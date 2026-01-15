@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.css';
+
 const images = [
   {
     preview:
@@ -80,20 +83,17 @@ const createGalleryItemTemplate = ({ preview, original, description }) => {
 const galleryItemsTemplate = images.map(createGalleryItemTemplate).join('');
 const galleryElement = document.querySelector('.gallery');
 galleryElement.innerHTML = galleryItemsTemplate;
+new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  eventClose: true,
+});
 
 galleryElement.addEventListener('click', onGalleryClick);
 
 function onGalleryClick(event) {
-  if (event.target.nodeName === 'IMG') {
-    event.preventDefault();
-  }
-
-  new SimpleLightbox('.gallery a', {
-    captions: true,
-    captionsData: 'alt',
-    captionPosition: 'bottom',
-    captionDelay: 250,
-    eventClose: true,
-  });
+  event.preventDefault();
 }
 //galleryElement.removeEventListener("click", onGalleryClick);
