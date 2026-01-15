@@ -83,10 +83,7 @@ const createGalleryItemTemplate = ({ preview, original, description }) => {
 const galleryItemsTemplate = images.map(createGalleryItemTemplate).join('');
 const galleryElement = document.querySelector('.gallery');
 galleryElement.innerHTML = galleryItemsTemplate;
-new SimpleLightbox('.gallery a', {
-  captions: true,
+let gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
-  captionPosition: 'bottom',
   captionDelay: 250,
-  eventClose: true,
 });
