@@ -1,5 +1,6 @@
 import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.css';
+
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const images = [
   {
@@ -67,22 +68,26 @@ const images = [
   },
 ];
 
-const createGalleryItemTemplate = ({ preview, original, description }) => {
-  return `
-    <li class="gallery-item product-card">
-      <a class="gallery-link" href="${original}">
-        <img
-          class="gallery-image product-card-img"
-          src="${preview}"
-          alt="${description}"
-        />
-      </a>
-    </li>
-  `;
-};
-const galleryItemsTemplate = images.map(createGalleryItemTemplate).join('');
-const galleryElement = document.querySelector('.gallery');
-galleryElement.innerHTML = galleryItemsTemplate;
+const galleryContainer = document.querySelector('.gallery');
+
+const markup = images
+  .map(({ preview, original, description }) => {
+    return `
+      <li class="gallery-item">
+        <a class="gallery-link" href="${original}">
+          <img 
+            class="gallery-image" 
+            src="${preview}" 
+            alt="${description}" 
+          />
+        </a>
+      </li>
+    `;
+  })
+  .join('');
+
+galleryContainer.innerHTML = markup;
+
 let gallery = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
