@@ -10,10 +10,12 @@ export default defineConfig(({ command }) => {
       [command === 'serve' ? 'global' : '_global']: {},
     },
     root: 'src',
+    base: '/goit-js-hw-09/',
+
     build: {
       sourcemap: true,
       rollupOptions: {
-        input: glob.sync('./src/index.html'),
+        input: glob.sync('./src/index.*.html'),
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
