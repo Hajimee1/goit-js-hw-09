@@ -90,10 +90,3 @@ new SimpleLightbox('.gallery a', {
   captionDelay: 250,
   eventClose: true,
 });
-
-galleryElement.addEventListener('click', onGalleryClick);
-
-function onGalleryClick(event) {
-  event.preventDefault();
-}
-//galleryElement.removeEventListener("click", onGalleryClick);
